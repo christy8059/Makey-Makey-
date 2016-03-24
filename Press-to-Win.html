@@ -5,88 +5,86 @@
     <title>p5js Template</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
     <script>
-        var x = 0 
+        var x = 0
         var userY = 400
         var userX = 250
-        var started = false;// to say that the game hasn't started or the user didnt press start yet 
+        var started = false;
 
         function setup() {
             createCanvas(500, 500);
         }
 
         function draw() {
-            if (started) {// when the space bar is pressed 
+            if (started) {
                 stroke(0)
-                text("Press SPACE to play", 100, 250);// directing the player what to do
+                text("Press SPACE to play", 100, 250);
                 
                 
-                x += 10  
+                x += 10 
                 userY++;
 
-                background(0);// background set to black
+                background(0);
 
-                userBall()// calling the function
-                drawRectangle()//calling the function
-                checkCollide()//calling the function
+                userBall()
+                drawRectangle()
+                checkCollide()
             }
             else {
-                background(0);// still set to black
+                background(0);
                 stroke(0);
                 textAlign(CENTER);
                 textSize(30);
                 fill(255)
-                text("Press SPACE to play", width / 2, height / 2);// if nothing is being done then this phrase will stay on the screen
+                text("Press SPACE to play", width / 2, height / 2);
             }
 
         }
 
-        function drawRectangle() {// function to create the retangle(obstacle)
-            fill(0, 255, 0)// color set to green 
-            rect(x, 250, 125, 15)// where the rectangle starts 
-            if (x > width) {// once it reaches to the end of the wall (right) 
-                x = 0// it will go back to 0 (left).
-            }// This allow the rectangle to move horizontally  
+        function drawRectangle() {
+            fill(0, 255, 0)
+            rect(x, 250, 125, 15)
+            if (x > width) {
+                x = 0
+            }
         }
 
         function userBall() {
             fill(255, 0, 0)
-            ellipse(userX, userY, 20, 20)// creates the circle at the certain position  
-            fill(255)// red 
+            ellipse(userX, userY, 20, 20)
+            fill(255)
         }
 
         function keyPressed() {
-            if (key == " ") {// when the player presses the spacebar
-                started = true // shows that the game has started
-                userY -= 20 // allow the ball to move up
+            if (key == " ") {
+                started = true
+                userY -= 20
             }
         }
 
-        function checkCollide() {// checking function
+        function checkCollide() {
             if (userY <= 0) {
                 fill(0, 0, 255)
                 textSize(30)
-                text// checking if the ball has reached the top
-                noLoop()// game ends 
+                text("Good Job. You Won!", width / 2 - 125, height / 2 - 100)
+                noLoop()
             }
             if (userY > height) {
                 fill(0, 0, 255)
                 textSize(30)
-                text("That's too Bad!", width / 2 - 100, height / 2 + 100)// checking if the ball touched the bottom of the canvas 
-                noLoop()// game ends 
+                text("That's too Bad!", width / 2 - 100, height / 2 + 100)
+                noLoop()
             }
-            if (userY < 265 && userY > 235 && userX < x + 125 && userX > x) {// checking if the ball touched the obstacle 
+            if (userY < 265 && userY > 235 && userX < x + 125 && userX > x) {
                 fill(0, 0, 255)
                 textSize(30)
                 text("That's too Bad!", width / 2 - 100, height / 2 + 100)
-                noLoop()// game ends
+                noLoop()
             }
         }
     </script>
 </head>
 
 <body>
-<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
-
 
 </body>
 
